@@ -4,14 +4,21 @@
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
-<h1>Home</h1>
+
 <h1>{{title}}</h1>
+<div class="jumbotron">
+  <img  src="https://th.bing.com/th/id/R.74135c4976edaed2f39b4ae0f67860a6?rik=bNUpVcCw34qhUA&pid=ImgRaw&r=0" alt="W3Schools.com">
+</div>
+
+
+<h1>Symfony 4.4</h1>
+<h2>{{activity}}</h2>
 {% if age >18%}
-<p> Tu es majeur </p>
+<p> Un Framework est un outil qui vient encapsuler votre application et dont elle devient casi-totalement dépendante. D’autre part, le framework impose une certaine structure à notre code ce qui lui permettre d’être plus facilement lu et modifié ou amélioré par d’autres développeurs qui connaissent aussi le framework.  </p>
 {% else %}
-<p> Tu es mineur </p>
+<p> « MVC », c’est le sigle pour « Model, View, Controller » (Modèle, Vue, Controlleur pour les moins anglophones d’entre nous) et c’est le nom d’une architecture de code pour les applications web. Le principe de cette architecture est simple, c’est de découper notre application en 3 grands groupes : le Model qui sera notre couche métier (la machinerie quoi), la View (aussi appelée Template) qui sera notre partie HTML et CSS dans laquelle nous injecterons les données à afficher (par exemple les coordonnées de l’utilisateur actuellement connecté) et enfin le Controller, qui est un peu le chef d’orchestre de tout ça et qui a pour rôle de définir quelles actions doivent être déclenchées et quelle View doit être affichée. </p>
 {% endif %}
-<p> lorem </p>
+<p>  </p>
 
 
 {% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BlogController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 1000px;   width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+
+{% if id==1 %}
+            <div>
+            <h2>How Innovative Ideas  !</h2>
+                <br>
+                <br>
+                <br>
+                <img  src="https://cra.org/crn/wp-content/uploads/sites/7/2015/06/Great_Innovative_Ideas_600x200.jpg" alt="creativity">
+                <br>
+                <br>
+                <br>
+                 
+            <p style="align-text:justify">In 2010, Thomas Thwaites decided he wanted to build a toaster from scratch. He walked into a shop, purchased the cheapest toaster he could find, and promptly went home and broke it down piece by piece.    
+                 Thwaites had assumed the toaster would be a relatively simple machine. By the time he was finished deconstructing it, however, there were more than 400 components laid out on his floor. The toaster contained over 
+                 100 different materials with three of the primary ones being plastic, nickel, and steel.     
+                 He decided to create the steel components first. After discovering that iron ore was required to make steel, Thwaites called up an iron mine in his region and asked if they would let him use some for the project.    
+                 Surprisingly, they agreed.
+            </p>
+          
+               
+        </div>
+{% elseif id==2 %}
+        <div>
+               <h2>What is Creativity?</h2>
+                <br>
+                <br>
+                <br>
+                 <img  src="https://mindyiannelli.com/wp-content/uploads/2020/03/Light-Bulb-White.png" alt="creativity">
+                <br>
+                <br>
+                <br>
+                <p  style="align-text:justify">The creative process is the act of making new connections between old ideas or recognizing relationships between concepts.    
+                 Creative thinking is not about generating something new from a blank slate, but rather about taking what is already present 
+                 and combining those bits and pieces in a way that has not been done previously. While being creative isn't easy, nearly all great 
+                 ideas follow a similar creative process. In 1940, an advertising executive named James Webb Young published a short guide titled, 
+                 A Technique for Producing Ideas. Young believed the process of creative connection always occurred in five steps.
+                </p>
+                 </div>
+{% elseif id==3 %}
+                 <div>
+                <h2>How Experts Figure What to Focus On..</h2>
+                <br>
+                <br>
+                <br>
+                <img  src="https://th.bing.com/th/id/OIP.QeSJnCmW5lT4dDj-r4QFKgHaE8?pid=ImgDet&w=500&h=334&rs=1" alt="creativity">
+                <br>
+                <br>
+                <br>
+                 <p  style="align-text:justify">Peak performance experts say things like, You should focus. You need to eliminate the distractions. Commit to one thing and become 
+                 great at that thing.This is good advice. The more I study successful people from all walks of life\u2014artists, athletes, entrepreneurs, 
+                 scientists\u2014the more I believe focus is a core factor of success. But there is a problem with this advice too. Of the many options in 
+                 front of you, how do you know what to focus on? How do you know where to direct your energy and attention? How do you determine the one thing 
+                 that you should commit to doing? I don't claim to have all the answers, but let me share what I\u2019ve learned so far.
+                 </p>
+                              
+            
+               
+              </div>
+{% else %}
+ <h2>Article Introuvable</h2>   
+{% endif %}
+
+
+</div>
+{% endblock %}
