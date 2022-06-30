@@ -43,17 +43,29 @@ class ProductController extends AbstractController
       
     }
 
-
-      /**
-     * @Route("/product/{id}", name="product.detail")
+    /**
+     * @Route("/edit-product/{id}/{label}/{price}/{quantity}")
+     *  
      */
-    public function productDetails(Produit $product): Response
+    public function update(ManagerRegistry $doctrine,  int $id, string $label, int $price, int $quantity): Response
     {
-        return $this->render('product/detail.html.twig', [
-            'product' => $product,
-        ]);
-    }
+        $entityManager = $doctrine->getManager();
+        $product = $entityManager->getRepository(Produit::class)->find($id);
 
+        if (!$product) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$id
+            );
+        }
+
+        $product->setLabel($label)
+        ->setPrice($price)
+        ->setQuantity($quantity);
+
+        $entityManager->flush();
+
+        return new Response('Saved new product with id '.$product->getId());
+    }
 
 /**
      * @Route("/get-all-products", name="get-all-products")
@@ -67,6 +79,15 @@ class ProductController extends AbstractController
             'products' =>$products
         ]);
       
+    }
+      /**
+     * @Route("/product/{id}", name="product.detail")
+     */
+    public function productDetails(Produit $product): Response
+    {
+        return $this->render('product/detail.html.twig', [
+            'product' => $product,
+        ]);
     }
     
 }

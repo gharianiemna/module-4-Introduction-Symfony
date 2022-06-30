@@ -46,7 +46,23 @@ class UserRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
+    /**
+     * @return User[]
+     */
+    public function GetUserById(int $id)
+    {
+        $entityManager = $this->getEntityManager();
 
+        $query = $entityManager->createQuery(
+            'SELECT p
+            FROM App\Entity\User p
+            WHERE p.id > :id
+            ORDER BY p.id ASC'
+        )->setParameter('id', $id);
+
+        // returns an array of Product objects
+        return $query->getResult();
+    }
     // /**
     //  * @return User[] Returns an array of User objects
     //  */
