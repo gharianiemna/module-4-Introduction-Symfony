@@ -5,6 +5,9 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\Articles;
+
 
 class BlogController extends AbstractController
 {
@@ -40,6 +43,31 @@ class BlogController extends AbstractController
             'id' => $id,
         ]);
  }
+
+/**
+     * @Route("/article", name="article")
+     */
+    public function createArticle(ManagerRegistry $doctrine): Response
+    {
+        $entityManager = $doctrine->getManager();
+
+        $article = new Articles();
+        $article->setTitle("article")
+        ->setAuthor("ghariani")
+        ->setContent("Emailnhfcgsjdgfkjqhfsnbdvcjsdfsfshbdsbjdsgsgdjsdcjbvsfygfgdvhgdsvfsdqhksjhqkhsiqyhsjsqh")
+        ->setDate(new \DateTime());
+
+        // tell Doctrine you want to (eventually) save the Product (no queries yet)
+        $entityManager->persist($article);
+
+        // actually executes the queries (i.e. the INSERT query)
+        $entityManager->flush();
+        return new Response('Saved new product with id '.$article->getId());
+      
+    }
+
+
+
 //     /**
 //     * @Route("/blog/{id}", name="blog_show" , methods={"GET","HEAD"}, requirements={"id"="\d+"})
 //     */

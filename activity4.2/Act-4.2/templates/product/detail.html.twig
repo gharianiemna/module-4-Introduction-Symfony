@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.label }}{% endblock %}
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+
+    <div class="container">
+        <div class="row mt-3 mb-4">
+            <div class="col-md-4">
+                <img src="https://via.placeholder.com/600x400" alt="{{ product.Label}}" class="img-fluid">
+            </div>
+            <div class="col-md-8">
+                <h1 class="mt-4 mt-md-0">{{ product.Label}}</h1>
+                <h2>{{ product.price }} €</h2>
+                <hr>
+                <b>quantity: </b>{{ product.Quantity}}
+                <form class="mt-4 p-4 bg-light" method="post">
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" class="form-control" id="quantity">
+                    </div>
+                    <button class="btn btn-warning">Add to Cart</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
