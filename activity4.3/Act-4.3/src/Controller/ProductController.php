@@ -20,6 +20,7 @@ class ProductController extends AbstractController
     {
         return $this->render('product/index.html.twig', [
             'controller_name' => 'ProductController',
+   
         ]);
     }
 
@@ -46,6 +47,7 @@ class ProductController extends AbstractController
             .' and new category with id: '.$category->getId()
         );
     }
+
 /**
      * @Route("/get-all-products", name="get-all-products")
      */
@@ -62,14 +64,31 @@ class ProductController extends AbstractController
 /**
      * @Route("/productsbycategory/{category_id}", name="get-category-products")
      */
-    public function showProducts(ManagerRegistry $doctrine, ProductRepository $produitRepository, int $category_id): Response
+    public function showProducts( ProductRepository $produitRepository, int $category_id): Response
     {
         $produits = $produitRepository->findBy(['category' => $category_id]);
-        return $this->render('product/index.html.twig', [
+        $categoryName = $produits[1]->getCategory()->getName();
+        return $this->render('product/productsList.html.twig', [
             'controller_name' => 'productController',
-            'products' =>$produits
+            'products' =>$produits,
+            'category'=> $categoryName
         ]);
        
     }
+
+          /**
+     * @Route("/product/{id}", name="product.detail")
+     */
+    public function productDetails(ProductRepository $produitRepository, Product $product): Response
+    {
+        $categoryId = $product->getCategory()->getId();
+        $produits = $produitRepository->findBy(['category' => $categoryId]);
+        return $this->render('product/detail.html.twig', [
+            'controller_name' => 'productController',
+            'product' => $product,
+            'produits'=>  $produits,
+        ]);
+    }
+
 
 }

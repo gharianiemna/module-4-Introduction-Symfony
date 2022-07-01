@@ -29,4 +29,29 @@
             </div>
         </div>
     </div>
+    <div class="row">
+
+{% for product in produits %}
+   
+   <div class="card border-info mb-3" style="max-width: 20rem; min-width: 20rem;">
+        <h5 class="card-header">product:</h5>
+        <div class="card-body">
+          <h3 class="card-title">{{ product.Label}}</h3>
+        {# <h5 class="card-title"> Category {{category}}</h5> #}
+ </div>
+    <div class="card-body">
+    <p class="card-text">Price: {{ product.Price}}  dt</p>
+  </div>
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item">quantity : {{ product.Quantity}}</li>
+  </ul>
+    <div class="card-footer text-muted">
+<a href="{{ path('product.detail', {id: product.id}) }}" class="btn btn-dark">
+    View details
+</a>
+    </div>
+</div>
+{% endfor %}
+   </div>
+</div>
 {% endblock %}
