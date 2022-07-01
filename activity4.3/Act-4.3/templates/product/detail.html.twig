@@ -31,10 +31,13 @@
     </div>
     <div class="row">
 
-{% for product in produits %}
-   
+   <h5>Produits similaires:</h5>
+        <div class="row">
+{% for key,product in produits %}
+   {% if key < 5 %}
+ 
    <div class="card border-info mb-3" style="max-width: 20rem; min-width: 20rem;">
-        <h5 class="card-header">product:</h5>
+     
         <div class="card-body">
           <h3 class="card-title">{{ product.Label}}</h3>
         {# <h5 class="card-title"> Category {{category}}</h5> #}
@@ -50,8 +53,11 @@
     View details
 </a>
     </div>
-</div>
+    </div>
+
+{% endif %}
 {% endfor %}
+</div>
    </div>
 </div>
 {% endblock %}

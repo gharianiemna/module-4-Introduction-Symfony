@@ -76,19 +76,34 @@ class ProductController extends AbstractController
        
     }
 
-          /**
+       /**
      * @Route("/product/{id}", name="product.detail")
      */
-    public function productDetails(ProductRepository $produitRepository, Product $product): Response
+
+    public function showById(ProductRepository $produitRepository, CategoryRepository $categorieRepository,$id)
     {
-        $categoryId = $product->getCategory()->getId();
-        $produits = $produitRepository->findBy(['category' => $categoryId]);
+        $product = $produitRepository->find($id);
+        $category  = $categorieRepository->find($product->getCategory());
+        $products = $category->getProducts();
         return $this->render('product/detail.html.twig', [
-            'controller_name' => 'productController',
             'product' => $product,
-            'produits'=>  $produits,
+            'category' => $category,
+            'produits' => $products
         ]);
     }
 
-
+    // deuxieme methode
+    //       /**
+    //  * @Route("/product/{id}", name="product.detail")
+    //  */
+    // public function productDetails(ProductRepository $produitRepository, Product $product): Response
+    // {
+    //     $categoryId = $product->getCategory()->getId();
+    //     $produits = $produitRepository->findBy(['category' => $categoryId]);
+    //     return $this->render('product/detail.html.twig', [
+    //         'controller_name' => 'productController',
+    //         'product' => $product,
+    //         'produits'=>  $produits,
+    //     ]);
+    // }
 }
