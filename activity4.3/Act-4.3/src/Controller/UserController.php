@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\User;
-use App\Entity\Message;
+use App\Entity\Messages;
 use  App\Repository\UserRepository;
 use  App\Repository\MessageRepository;
 class UserController extends AbstractController
@@ -34,7 +34,7 @@ class UserController extends AbstractController
             ->getRepository(User::class)
             ->findOneByIdJoinedToMessage($id);
 
-        $message = $user->getMessage();
+        $message = $user->getMesaage();
         return $this->render('user/details.html.twig', [
                     'user' => $user,
                     'message' => $message,
