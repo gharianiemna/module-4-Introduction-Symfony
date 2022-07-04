@@ -15,7 +15,7 @@ class ProductController extends AbstractController
      */
     public function home(): Response
     {
-        return $this->render('product/index.html.twig', [
+        return $this->render('product/home.html.twig', [
             'controller_name' => 'ProductController',
         ]);
     }
@@ -40,6 +40,6 @@ class ProductController extends AbstractController
 
         $message = $messageGenerator->getHappyMessage();
         $this->addFlash('success', $message);
-        // ...
+        return new Response($message);
     }
 }

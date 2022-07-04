@@ -3,6 +3,9 @@
 use App\Kernel;
 use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+use Symfony\Component\Filesystem\Filesystem;
+
 
 require dirname(__DIR__).'/config/bootstrap.php';
 
@@ -25,3 +28,12 @@ $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();
 $kernel->terminate($request, $response);
+
+
+$filesystem = new Filesystem();
+
+try {
+    $filesystem->mkdir(sys_get_temp_dir().'/'.random_int(0, 1000));
+} catch (IOExceptionInterface $exception) {
+    echo "An error occurred while creating your directory at ".$exception->getPath();
+}
