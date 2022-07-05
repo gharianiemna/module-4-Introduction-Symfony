@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Entity\Link;
 use App\Entity\AdressMail;
 use App\Entity\Montant;
+use App\Entity\Equipe;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -17,7 +18,7 @@ use App\Form\UserType;
 use App\Form\MontantType;
 use App\Form\AdressMailType;
 use App\Form\LinkType;
-
+use App\Form\EquipeType;
 
 class FormulaireController extends AbstractController
 {
@@ -138,8 +139,8 @@ class FormulaireController extends AbstractController
      */
     public function Email(Request $request, ManagerRegistry $doctrine): Response
      {
-    $mail = new AdressMail();
-    $form = $this->createForm(AdressMailType::class, $mail);
+    $mail = new Equipe();
+    $form = $this->createForm(EquipeType::class, $mail);
     $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $doctrine->getManager();
@@ -180,4 +181,30 @@ class FormulaireController extends AbstractController
        
 
     }
+
+      /**
+     * @Route("/Equipe", name="Equipe_form")
+     */
+    public function EquipeForm (Request $request, ManagerRegistry $doctrine): Response
+
+    {
+        $Equipe = new Equipe();
+        $form = $this->createForm(EquipeType::class, $Equipe);
+        $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager = $doctrine->getManager();
+                $entityManager->persist($Equipe);
+                $entityManager->flush();  
+                $this->addFlash('success', 'Created!');
+                return $this->redirectToRoute('home');
+            }
+        return $this->render('formulaire/Equipe.html.twig', [
+            'formEquipe' => $form->createView(),
+            'Equipe' => $Equipe,
+    
+        ]);
+       
+    }
+
+    
 }

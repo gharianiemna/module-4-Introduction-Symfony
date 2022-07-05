@@ -16,7 +16,7 @@ class LienLeBonCoinValidator extends ConstraintValidator
         }
 
         // TODO: implement the validation here
-        if ('https://www.leboncoin.fr/categorie/identifiant.htm/' != $value) { 
+        if ( !str_starts_with($value,'https://www.leboncoin.fr/')) { 
             $this->context->buildViolation($constraint->message)
             ->addViolation();
     }

@@ -5,6 +5,7 @@ donc d'enregistrer et manipuler des données dans la base de données.
 
 
 **********************************************************************************************************************
+
 Pour executer le code voici les diffrenetes routes:
 @Route("/"): Home
 
@@ -14,3 +15,11 @@ Pour executer le code voici les diffrenetes routes:
 
 @Route("/emailForm") : pour  ejouter une adresse email
 @Route("/Email/display") : pour afficher la liste des email
+
+@Route("/link") : pour  ejouter un link
+@Route("/link/display") : pour afficher les link ajoutés
+
+
+@Route("/Equipr") : pour  ejouter une equipe
+
+Vous Pouvez Aussi utiliser le Navbar!
