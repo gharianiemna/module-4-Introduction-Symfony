@@ -5,6 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
+use App\Entity\Link;
 use App\Entity\AdressMail;
 use App\Entity\Montant;
 use Doctrine\Persistence\ManagerRegistry;
@@ -15,6 +16,9 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Form\UserType;
 use App\Form\MontantType;
 use App\Form\AdressMailType;
+use App\Form\LinkType;
+
+
 class FormulaireController extends AbstractController
 {
     /**
@@ -35,7 +39,6 @@ class FormulaireController extends AbstractController
         return $this->render('formulaire/display.html.twig', [
             'controller_name' => 'FormulaireController',
             'User'=>$User,
-
         ]);
       
     }
@@ -51,7 +54,6 @@ class FormulaireController extends AbstractController
         return $this->render('formulaire/displayfull.html.twig', [
             'controller_name' => 'FormulaireController',
             'Montant'=>$Montant,
-
         ]);
       
     }
@@ -67,16 +69,25 @@ class FormulaireController extends AbstractController
         $Email=$repos->findAll();
         return $this->render('formulaire/displayemail.html.twig', [
             'controller_name' => 'FormulaireController',
-           
-            'Email'=>$Email,
-            'msg'=>''
+            'Email'=>$Email
         ]);
       
     }
 
+    /** 
+    * @Route("/link/display", name="link_display") 
+    */ 
 
-
-
+    public function getLink(): Response
+    {
+        $repos=$this->getDoctrine()->getRepository(Link::class);
+        $link=$repos->findAll();
+        return $this->render('formulaire/displaylink.html.twig', [
+            'controller_name' => 'FormulaireController',
+            'link'=>$link
+        ]);
+      
+    }
 
     /**
      * @Route("/formulaire", name="formulaire")
@@ -142,5 +153,31 @@ class FormulaireController extends AbstractController
         'Email' => $mail,
 
     ]);
+    }
+
+
+    /**
+     * @Route("/link", name="link_form")
+     */
+    public function LinkForm (Request $request, ManagerRegistry $doctrine): Response
+
+    {
+        $link = new Link();
+        $form = $this->createForm(LinkType::class, $link);
+        $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager = $doctrine->getManager();
+                $entityManager->persist($link);
+                $entityManager->flush();  
+                $this->addFlash('success', 'Created!');
+                return $this->redirectToRoute('link_display');
+            }
+        return $this->render('formulaire/Formlink.html.twig', [
+            'formlink' => $form->createView(),
+            'link' => $link,
+    
+        ]);
+       
+
     }
 }
