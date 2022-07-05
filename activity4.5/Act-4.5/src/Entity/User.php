@@ -53,6 +53,11 @@ class User
      */
     private $PermisConduire;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Montant::class, mappedBy="User", cascade={"persist", "remove"})
+     */
+    private $montant;
+
 
     public function getId(): ?int
     {
@@ -139,6 +144,23 @@ class User
     public function setPermisConduire(?string $PermisConduire): self
     {
         $this->PermisConduire = $PermisConduire;
+
+        return $this;
+    }
+
+    public function getMontant(): ?Montant
+    {
+        return $this->montant;
+    }
+
+    public function setMontant(Montant $montant): self
+    {
+        // set the owning side of the relation if necessary
+        if ($montant->getUser() !== $this) {
+            $montant->setUser($this);
+        }
+
+        $this->montant = $montant;
 
         return $this;
     }

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %} 
+{% block body %}
+   <style> 
+      .table { border-collapse: collapse; } 
+      .table th, td { border-bottom: 1px solid #ddd; width: 250px; text-align: left; align: left; } 
+   </style> 
+   </table> 
+   <h2>Registred Montants</h2>  
+   <table class = "table">  
+      <tr>  
+         <th>Montant</th>  
+         <th>Email</th>  
+         <th>Mobile</th>  
+
+      </tr>  
+      {% for x in Montant %} 
+      <tr>  
+         <td>{{ x.Montant }}</td>   
+         <td>{{ x.Email }}</td>
+         <td>{{ x.Mobile }}</td>  
+       
+      </tr>  
+      {% endfor %} 
+   </table> 
+{% endblock %}        
