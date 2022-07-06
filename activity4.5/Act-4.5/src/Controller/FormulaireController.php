@@ -60,35 +60,9 @@ class FormulaireController extends AbstractController
     }
 
 
-    /** 
-    * @Route("/Email/display", name="formEmail_display") 
-    */ 
 
-    public function getEmail(): Response
-    {
-        $repos=$this->getDoctrine()->getRepository(AdressMail::class);
-        $Email=$repos->findAll();
-        return $this->render('formulaire/displayemail.html.twig', [
-            'controller_name' => 'FormulaireController',
-            'Email'=>$Email
-        ]);
-      
-    }
 
-    /** 
-    * @Route("/link/display", name="link_display") 
-    */ 
 
-    public function getLink(): Response
-    {
-        $repos=$this->getDoctrine()->getRepository(Link::class);
-        $link=$repos->findAll();
-        return $this->render('formulaire/displaylink.html.twig', [
-            'controller_name' => 'FormulaireController',
-            'link'=>$link
-        ]);
-      
-    }
 
     /**
      * @Route("/formulaire", name="formulaire")
@@ -134,77 +108,11 @@ class FormulaireController extends AbstractController
     ]);
     }
 
-     /**
-     * @Route("/emailForm", name="emailvalid")
-     */
-    public function Email(Request $request, ManagerRegistry $doctrine): Response
-     {
-    $mail = new Equipe();
-    $form = $this->createForm(EquipeType::class, $mail);
-    $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($mail);
-            $entityManager->flush();  
-            $this->addFlash('success', 'Created! ');
-            return $this->redirectToRoute('formEmail_display');
-        }
-    return $this->render('formulaire/EmailForm.html.twig', [
-        'formEmail' => $form->createView(),
-        'Email' => $mail,
-
-    ]);
-    }
+     
 
 
-    /**
-     * @Route("/link", name="link_form")
-     */
-    public function LinkForm (Request $request, ManagerRegistry $doctrine): Response
-
-    {
-        $link = new Link();
-        $form = $this->createForm(LinkType::class, $link);
-        $form->handleRequest($request);
-            if ($form->isSubmitted() && $form->isValid()) {
-                $entityManager = $doctrine->getManager();
-                $entityManager->persist($link);
-                $entityManager->flush();  
-                $this->addFlash('success', 'Created!');
-                return $this->redirectToRoute('link_display');
-            }
-        return $this->render('formulaire/Formlink.html.twig', [
-            'formlink' => $form->createView(),
-            'link' => $link,
-    
-        ]);
-       
-
-    }
-
-      /**
-     * @Route("/Equipe", name="Equipe_form")
-     */
-    public function EquipeForm (Request $request, ManagerRegistry $doctrine): Response
-
-    {
-        $Equipe = new Equipe();
-        $form = $this->createForm(EquipeType::class, $Equipe);
-        $form->handleRequest($request);
-            if ($form->isSubmitted() && $form->isValid()) {
-                $entityManager = $doctrine->getManager();
-                $entityManager->persist($Equipe);
-                $entityManager->flush();  
-                $this->addFlash('success', 'Created!');
-                return $this->redirectToRoute('home');
-            }
-        return $this->render('formulaire/Equipe.html.twig', [
-            'formEquipe' => $form->createView(),
-            'Equipe' => $Equipe,
-    
-        ]);
+     
        
     }
 
     
-}
