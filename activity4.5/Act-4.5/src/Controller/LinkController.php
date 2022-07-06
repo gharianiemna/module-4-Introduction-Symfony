@@ -17,15 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class LinkController extends AbstractController
 {
-    /**
-     * @Route("/link", name="app_link")
-     */
-    public function index(): Response
-    {
-        return $this->render('link/index.html.twig', [
-            'controller_name' => 'LinkController',
-        ]);
-    }
+    
         /** 
     * @Route("/link/display", name="link_display") 
     */ 
