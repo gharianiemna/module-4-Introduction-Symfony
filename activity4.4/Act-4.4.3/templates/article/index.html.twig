@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article{% endblock %}
+ 
+{% block body %}
+   <style> 
+      .table { border-collapse: collapse; } 
+      .table th, td { border-bottom: 1px solid #ddd; width: 250px; text-align: left; align: left; } 
+   </style> 
+
+   <h2>Available Articles</h2>  
+
+      {% for x in Article %} 
+    <h3> {{ x.title }}  </h3> 
+    <p>{{ x.content }} </p>
+    <a href="{{ path('article', {id: x.id}) }}" class="btn btn-dark">
+    View details
+</a>
+      {% endfor %} 
+       
+ 
+{% endblock %}        
