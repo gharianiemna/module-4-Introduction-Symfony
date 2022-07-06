@@ -20,7 +20,13 @@ class UserType extends AbstractType
         $builder
         ->add('Nom', TextType::class, ['required' => true])
         ->add('Prenom', TextType::class,  ['required' => true])
-        ->add('Age', TextType::class, ['required' => false])
+        ->add('Age', TextType::class, ['required' => false,
+        'constraints'=> [new LessThan([
+            'value' => 100]),
+            new GreaterThan([
+                'value' => 1
+            ])]
+    ])
         ->add('Adress', TextType::class,  ['required' => true], ['attr' => ['maxlength' => 255]])
         ->add('CodPostal', NumberType::class, [
             'required' => true,
