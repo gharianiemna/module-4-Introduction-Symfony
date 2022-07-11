@@ -3,10 +3,16 @@ Pour cette activité, les objectifs sont:
 - travailler avec le service « FormBuilder» qui permet de travailler facillement les formulaires et 
 donc d'enregistrer et manipuler des données dans la base de données.
 
+Pour exécuter le code voici les différentes commandes:
 
-**********************************************************************************************************************
+1-composer i
+2-symfony console doctrine:database:create
+3-symfony console make:migration  
+4-symfony console doctrine:migrations:migrate 
+5-composer require server
+6-php bin/console server:run
 
-Pour executer le code voici les diffrenetes routes:
+les routes sont:
 @Route("/"): Home
 
 
